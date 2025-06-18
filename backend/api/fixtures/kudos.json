@@ -1,0 +1,68 @@
+[
+  {
+    "model": "kudos.kudo",
+    "pk": 1,
+    "fields": {
+      "created_at": "2025-06-18T13:26:28.225Z",
+      "updated_at": "2025-06-18T13:26:28.226Z",
+      "sender": 1,
+      "receiver": 2,
+      "message": "Thanks for always going above and beyond!"
+    }
+  },
+  {
+    "model": "kudos.kudo",
+    "pk": 2,
+    "fields": {
+      "created_at": "2025-06-18T13:26:28.225Z",
+      "updated_at": "2025-06-18T13:26:28.226Z",
+      "sender": 1,
+      "receiver": 3,
+      "message": "Your attention to detail is amazing"
+    }
+  },
+  {
+    "model": "kudos.kudo",
+    "pk": 3,
+    "fields": {
+      "created_at": "2025-06-18T13:26:28.225Z",
+      "updated_at": "2025-06-18T13:26:28.226Z",
+      "sender": 1,
+      "receiver": 4,
+      "message": "You make teamwork look easy"
+    }
+  },
+  {
+    "model": "kudos.kudo",
+    "pk": 4,
+    "fields": {
+      "created_at": "2025-06-14T13:26:28.225Z",
+      "updated_at": "2025-06-14T13:26:28.226Z",
+      "sender": 2,
+      "receiver": 1,
+      "message": "Your positive attitude is contagious"
+    }
+  },
+  {
+    "model": "kudos.kudo",
+    "pk": 5,
+    "fields": {
+      "created_at": "2025-06-18T13:26:28.225Z",
+      "updated_at": "2025-06-18T13:26:28.226Z",
+      "sender": 2,
+      "receiver": 1,
+      "message": "Appreciate your quick thinking on that project!"
+    }
+  },
+  {
+    "model": "kudos.kudo",
+    "pk": 6,
+    "fields": {
+      "created_at": "2025-06-18T13:26:28.226Z",
+      "updated_at": "2025-06-18T13:26:28.226Z",
+      "sender": 2,
+      "receiver": 3,
+      "message": "Thanks for stepping up when the team needed you!"
+    }
+  }
+]

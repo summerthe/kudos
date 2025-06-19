@@ -1,6 +1,6 @@
-import { formatDate } from '@/lib/utils'
-import { Card, CardContent } from '@/components/ui/card'
 import KudoForm from '@/components/KudoForm'
+import { Card, CardContent } from '@/components/ui/card'
+import { formatDate } from '@/lib/utils'
 
 export default function KudosCard({
   handleGiveKudo,
@@ -18,14 +18,14 @@ export default function KudosCard({
               <p>{k.message}</p>
               <div className="flex justify-between	">
                 <span className="text-xs ">
-                  <b>{k.sender_name}</b>
+                  <b>{k.receiver_name}</b>
                 </span>
                 <span className="text-xs ">{formatDate(k.created_at)}</span>
               </div>
             </div>
           ))
         ) : (
-          <p className='text-xs'>No Kudos Given</p>
+          <p className="text-xs">No Kudos Given</p>
         )}
       </CardContent>
 

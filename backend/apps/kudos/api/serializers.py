@@ -8,7 +8,15 @@ class KudoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Kudo
-        fields = ["id", "sender", "receiver", "message", "receiver_name", "sender_name"]
+        fields = [
+            "id",
+            "sender",
+            "receiver",
+            "message",
+            "receiver_name",
+            "sender_name",
+            "created_at",
+        ]
         read_only_fields = ["sender"]
 
     def validate(self, attrs):

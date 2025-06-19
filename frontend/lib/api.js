@@ -49,7 +49,6 @@ api.interceptors.response.use(
         // Refresh token has also expired, redirect to login
         localStorage.removeItem('accessToken')
         localStorage.removeItem('refreshToken')
-        localStorage.removeItem('userProfile')
         window.location.href = '/login'
       }
     }

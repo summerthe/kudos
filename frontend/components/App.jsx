@@ -17,14 +17,13 @@ const App = () => {
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route
-            path="/home"
+            path="/"
             element={
               <ProtectedRoute>
                 <HomePage />
               </ProtectedRoute>
             }
           />
-          <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
       </Router>
     </>

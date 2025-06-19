@@ -1,18 +1,51 @@
+import { useNavigate } from 'react-router-dom'
+import { logout } from '../utils/auth'
+import { showToast } from '@/utils/ui'
+import ProfileCard from '@/components/ProfileCard'
+import KudosCard from '@/components/KudosCard'
+import GivenKudosCard from '@/components/GivenKudosCard'
+import { useState, useEffect } from 'react'
+import { getMe } from '@/services/userService'
+import { getReceivedKudos, getGivenKudos } from '@/services/kudoService'
+
 const HomePage = () => {
+  const navigate = useNavigate()
   const handleLogout = () => {
-    localStorage.removeItem('auth')
-    window.location.href = '/login'
+    logout()
+    showToast('Logged out successfully')
+    navigate('/login')
   }
 
+  const [profile, setProfile] = useState(null)
+  const [kudos, setKudos] = useState([])
+  const [givenKudos, setGivenKudos] = useState([])
+
+  const fetchProfile = async () => {
+    setProfile(await getMe())
+  }
+
+  const fetchKudos = async () => {
+    setKudos(await getReceivedKudos())
+  }
+
+  const fetchGivenKudos = async () => {
+    setGivenKudos(await getGivenKudos())
+  }
+
+  useEffect(() => {
+    fetchProfile()
+    fetchKudos()
+    fetchGivenKudos()
+  }, [])
+
+  if (!profile) return null
+
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-2xl mb-4">Welcome to the Home Page!</h1>
-      <button
-        className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-        onClick={handleLogout}>
-        Log Out
-      </button>
-    </div>
+    <>
+      <ProfileCard profile={profile} handleLogout={handleLogout} />
+      <KudosCard kudos={kudos} kudosAvailable={profile.kudos_available}/>
+      <GivenKudosCard kudos={givenKudos}/>
+    </>
   )
 }
 

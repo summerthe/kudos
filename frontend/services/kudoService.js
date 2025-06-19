@@ -1,12 +1,12 @@
-import api from 'lib/api'
+import api from '@/lib/api'
 
 export const getGivenKudos = async () => {
-  const response = await api.get('/kudos/')
+  const response = await api.get('/kudos/?direction=given')
   return response.data
 }
 
 export const getReceivedKudos = async () => {
-  const response = await api.get('/kudos/?direction=received')
+  const response = await api.get('/kudos/')
   return response.data
 }
 

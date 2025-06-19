@@ -43,11 +43,11 @@ python3 manage.py loaddata api/fixtures/kudos.json api/fixtures/organizations.js
 python3 manage.py runserver
 ```
 
-The application will be available at: http://127.0.0.1:8000
+The application will be available at: <http://127.0.0.1:8000/api/v1/swagger>
 
 ## API Documentation
 
 After starting the server, access the API documentation at:
 
-- Swagger UI: http://127.0.0.1:8000/api/v1/swagger
-- ReDoc: http://127.0.0.1:8000/api/v1/redoc
+- Swagger UI: <http://127.0.0.1:8000/api/v1/swagger>
+- ReDoc: <http://127.0.0.1:8000/api/v1/redoc>

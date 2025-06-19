@@ -25,14 +25,18 @@ class KudoSerializer(serializers.ModelSerializer):
         sender = self.context["request"].user
         receiver = attrs["receiver"]
         if sender == receiver:
-            raise serializers.ValidationError("You cannot give kudos to yourself.")
+            raise serializers.ValidationError(
+                {"detail": "You cannot give kudos to yourself."},
+            )
 
         if sender.organization != receiver.organization:
             raise serializers.ValidationError(
-                "You can only give kudos to users in your organization.",
+                {"detail": "You can only give kudos to users in your organization."},
             )
 
         if not sender.can_give_kudo():
-            raise serializers.ValidationError("You have no kudos available to give.")
+            raise serializers.ValidationError(
+                {"detail": "You have no kudos available to give."},
+            )
 
         return response

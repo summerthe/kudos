@@ -3,22 +3,18 @@ import { logout } from '../utils/auth'
 import { showToast } from '@/utils/ui'
 import ProfileCard from '@/components/ProfileCard'
 import KudosCard from '@/components/KudosCard'
-import GivenKudosCard from '@/components/GivenKudosCard'
+import ReceivedKudosCard from '@/components/ReceivedKudosCard'
 import { useState, useEffect } from 'react'
-import { getMe } from '@/services/userService'
-import { getReceivedKudos, getGivenKudos } from '@/services/kudoService'
+import { getMe, getUsers } from '@/services/userService'
+import { getReceivedKudos, getGivenKudos, createKudo } from '@/services/kudoService'
+import { handleApiError } from '@/lib/utils'
 
 const HomePage = () => {
-  const navigate = useNavigate()
-  const handleLogout = () => {
-    logout()
-    showToast('Logged out successfully')
-    navigate('/login')
-  }
-
   const [profile, setProfile] = useState(null)
+  const [orgUsers, setOrgUsers] = useState([])
   const [kudos, setKudos] = useState([])
   const [givenKudos, setGivenKudos] = useState([])
+  const navigate = useNavigate()
 
   const fetchProfile = async () => {
     setProfile(await getMe())
@@ -32,10 +28,36 @@ const HomePage = () => {
     setGivenKudos(await getGivenKudos())
   }
 
+  const fetchOrgUsers = async () => {
+    setOrgUsers(await getUsers())
+  }
+
+  const handleLogout = () => {
+      logout()
+      showToast('Logged out successfully')
+      navigate('/login')
+  }
+
+  const handleGiveKudo = async (data, setError, successCallback=null) =>{
+    try {
+      await createKudo(data)
+      showToast('Kudos sent')
+      fetchProfile()
+      fetchGivenKudos()
+      if(successCallback){
+        successCallback()
+      }
+    } catch (error) {
+      handleApiError(error, setError, 'message')
+    } finally {
+    }
+  }
+
   useEffect(() => {
     fetchProfile()
     fetchKudos()
     fetchGivenKudos()
+    fetchOrgUsers()
   }, [])
 
   if (!profile) return null
@@ -43,8 +65,8 @@ const HomePage = () => {
   return (
     <>
       <ProfileCard profile={profile} handleLogout={handleLogout} />
-      <KudosCard kudos={kudos} kudosAvailable={profile.kudos_available}/>
-      <GivenKudosCard kudos={givenKudos}/>
+      <KudosCard handleGiveKudo={handleGiveKudo} kudos={givenKudos} kudosAvailable={profile.kudos_available} users={orgUsers}/>
+      <ReceivedKudosCard kudos={kudos}/>
     </>
   )
 }

@@ -11,6 +11,6 @@ export const getReceivedKudos = async () => {
 }
 
 export const createKudo = async data => {
-  const response = await api.post('/kudos/me/', data)
+  const response = await api.post('/kudos/', data)
   return response.data
 }

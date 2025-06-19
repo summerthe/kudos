@@ -1,12 +1,39 @@
-# React + Vite
+# Kudos Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React application for employees to give kudos to their colleagues within an organization.
 
-Currently, two official plugins are available:
+## Setup Instructions
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 1. Install pnpm
 
-## Expanding the ESLint configuration
+Ensure you have Node.js installed, then install pnpm:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install -g pnpm
+```
+
+### 2. Install dependencies
+
+```bash
+pnpm install
+```
+
+### 3. Environment Configuration
+
+Copy the example environment file and update it with your settings:
+
+```bash
+cp .env.example .env
+```
+
+### 4. Run Development Server
+
+```bash
+pnpm run dev
+```
+
+The application will be available at: [http://localhost:5173/](http://localhost:5173/)
+
+## Connecting to Backend
+
+Ensure your backend server is running and update the `VITE_API_URL` in your `.env` file to point to your backend API (default: `http://127.0.0.1:8000/api/v1`).
